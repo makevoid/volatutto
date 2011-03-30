@@ -48,7 +48,7 @@ class Volagratis
       key = "#{start}:#{dest}:#{date}:#{return_date}"
       self.redis.set key, result
     }
-    sleep 0.2
+    sleep 0.05
   end
   
   def http_search(start, dest, date, return_date)
