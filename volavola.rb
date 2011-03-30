@@ -44,8 +44,8 @@ class Volavola < Sinatra::Base
     content_type :json
     results = []
     
-    start = params[:from]
-    dest = params[:to]
+    start = params[:from].upcase
+    dest = params[:to].upcase
     date = Date.parse params[:date]
     return_date = Date.parse params[:return_date]
     days = 1

@@ -57,7 +57,7 @@ class Volagratis
     agent.read_timeout = 6
     agent.user_agent = "Mac Safari"
     
-    query_params = "&departureAirport=#{start}&arrivalAirport=#{dest}&outboundDay=#{date.day}&outboundMonthYear=#{date.strftime MONTHYEAR}&roundtrip=true&adults=1&childs=0&infants=0&currency=EUR&xrate=1&locale=en_US&returnDay=#{return_date.day}&returnMonthYear=#{return_date.strftime MONTHYEAR}"
+    query_params = "departureAirport=#{start}&arrivalAirport=#{dest}&outboundDay=#{date.day}&outboundMonthYear=#{date.strftime MONTHYEAR}&roundtrip=true&adults=1&childs=0&infants=0&currency=EUR&xrate=1&locale=en_US&returnDay=#{return_date.day}&returnMonthYear=#{return_date.strftime MONTHYEAR}"
     query_url = QUERY_URL % query_params
     query_page = agent.post query_url
     # p query_page
