@@ -12,3 +12,5 @@ gem 'voidtools'
 
 gem "redis"
 gem "shotgun"
+
+gem "mechanize"
