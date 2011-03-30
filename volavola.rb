@@ -35,6 +35,11 @@ class Volavola < Sinatra::Base
     post url, &block
   end
   
+  MONTHYEAR = "%m%Y"
+  def build_url(start, dest, date, return_date)
+    "http://www.volagratis.com/vg1/searching.do?url=search3.do&departureAirport=#{start}&arrivalAirport=#{dest}&outboundDay=#{date.day}&outboundMonthYear=#{date.strftime MONTHYEAR}&roundtrip=true&adults=1&childs=0&infants=0&currency=EUR&xrate=1&locale=it_IT&returnDay=#{return_date.day}&returnMonthYear=#{return_date.strftime MONTHYEAR}"
+  end
+  
   match "/search.json" do
     content_type :json
     results = []
@@ -60,11 +65,12 @@ class Volavola < Sinatra::Base
       return_dates.each do |return_date|
         key = "#{start}:#{dest}:#{date}:#{return_date}"
         price = vg.redis.get key
+        url = build_url(start, dest, date, return_date)
         results << {
           start_date: date,
           end_date: return_date,
           price: price,
-          link: "#asd",
+          link: url,
         }
       end
     end
