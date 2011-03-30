@@ -1,53 +1,53 @@
 // @import "buttons"
-@mixin rounded($border)
-  -webkit-border-radius= $border
-  -moz-border-radius= $border
-  border-radius= $border
+=rounded($border)
+  -webkit-border-radius: $border
+  -moz-border-radius: $border
+  border-radius: $border
 
-@mixin shadow
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2)
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2)
-  box-shadow: 0 1px 2px rgba(0,0,0,.2)
+=shadow
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
 
-@mixin shadow_more
-  -webkit-box-shadow: 0 -2px 3px rgba(0,0,0,.2)
-  -moz-box-shadow: 0 -2px 3px rgba(0,0,0,.2)
-  box-shadow: 0 -2px 3px rgba(0,0,0,.2)
-  
-@mixin gradient($top, $bottom)
-  background-color= $bottom
-  background= -webkit-gradient(linear, left top, left bottom, from($top), to($bottom))
-  background= -moz-linear-gradient(top, $top,  $bottom)
-  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$top}', endColorstr='#{$bottom}')
+=shadow_more
+  -webkit-box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.2)
+  -moz-box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.2)
+  box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.2)
 
-@mixin button
+=gradient($top, $bottom)
+  background-color: $bottom
+  background: -webkit-gradient(linear, left top, left bottom, from($top), to($bottom))
+  background: -moz-linear-gradient(top, $top, $bottom)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$top}', endColorstr='#{$bottom}')
+
+=button
   display: inline-block
-  padding: .1em 1em .12em
+  padding: 0.1em 1em 0.12em
   outline: none
   cursor: pointer
   text-align: center
   text-decoration: none
   font-size: 1.1em
-  @include rounded('.5em')
+  +rounded(unquote(".5em"))
   // this determines Mozilla to show the padding
-  border: solid 1px #ccc
-  @include shadow
-  text-shadow: 0 1px 1px rgba(0,0,0,.3)
+  border: solid 1px #cccccc
+  +shadow
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3)
   &:hover
     text-decoration: none
   &:active
     position: relative
     top: 1px
 
-@mixin color($background)
+=color($background)
   border: solid 1px darken($background, 3%)
-  @include gradient(lighten($background, 13%), $background)
-  color= mix(#fff, $background, 90%)
+  +gradient(lighten($background, 13%), $background)
+  color: mix(white, $background, 90%)
   &:hover
-    @include gradient(lighten($background, 10%), darken($background, 5%))
+    +gradient(lighten($background, 10%), darken($background, 5%))
   &:active
-    @include gradient($background, lighten($background, 10%))
-    color= mix(#fff, $background, 70%)
+    +gradient($background, lighten($background, 10%))
+    color: mix(white, $background, 70%)
 
 button,
 input[type="reset"],
@@ -64,7 +64,7 @@ input[type="file"] > input[type="button"]
   //behavior: url('/border-radius.htc')
   -moz-border-radius: $radius
   -webkit-border-radius: $radius
-  
+
 =border-radius-bottom($radius)
   border-bottom-left-radius: $radius
   border-bottom-right-radius: $radius
@@ -82,28 +82,28 @@ input[type="file"] > input[type="button"]
   -moz-border-radius-topright: $radius
   -webkit-border-top-left-radius: $radius
   -webkit-border-top-right-radius: $radius
-  
+
 =simple_gradient($start_color, $end_color)
   background: $start_color
-  background-image: -moz-linear-gradient(top, $start_color 0%, $end_color 100%) 
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$start_color), color-stop(100%,$end_color))
+  background-image: -moz-linear-gradient(top, $start_color 0%, $end_color 100%)
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $start_color), color-stop(100%, $end_color))
   //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start_color', endColorstr='$end_color',GradientType=0 )
-  
+
 =simple_gradient_tri($start, $stop, $end)
   background: $start
-  background-image: -moz-linear-gradient(top, $start 0%, $stop 50%, $end 100%) 
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$start), color-stop(50%,$start), color-stop(100%,$end))
+  background-image: -moz-linear-gradient(top, $start 0%, $stop 50%, $end 100%)
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $start), color-stop(50%, $start), color-stop(100%, $end))
   //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start', endColorstr='$end',GradientType=0 )
 
 =gradient_tri($start, $stop, $end, $perc1, $perc2, $perc3)
   background: $start
-  background-image: -moz-linear-gradient(top, $start $perc1, $stop $perc2, $end $perc3) 
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop($perc1,$start), color-stop($perc2,$stop), color-stop($perc3,$end))
+  background-image: -moz-linear-gradient(top, $start $perc1, $stop $perc2, $end $perc3)
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop($perc1, $start), color-stop($perc2, $stop), color-stop($perc3, $end))
 
 =simple_gradient_half($start_color, $stop_color, $restart_color, $end_color)
   background: $end_color
   background-image: -moz-linear-gradient(top, $start_color 0%, $stop_color 50%, $restart_color 51%, $end_color 100%)
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$start_color), color-stop(50%,$stop_color), color-stop(51%,$restart_color), color-stop(100%,$end_color))
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $start_color), color-stop(50%, $stop_color), color-stop(51%, $restart_color), color-stop(100%, $end_color))
   //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start_color', endColorstr='$end_color',GradientType=0 )
 
 =box-shadow($x, $y, $radius, $color)
@@ -117,14 +117,14 @@ input[type="file"] > input[type="button"]
   margin: 0
   padding: 0
 
-html, body 
-  height: 100%     
+html, body
+  height: 100%
   max-height: 100%
-  
+
 img
   border: 0
 
-ul 
+ul
   list-style-type: none
 
 li
@@ -133,28 +133,29 @@ li
 .clear
   clear: both
 
-a 
+a
   text-decoration: none
-  
-  
+
 // style
 
-$bg: #9CB3E6
-$bg2: #D4F2FF
-$bg_cont: #FFF
-$txt: #222
-$main: #999
-$alt: #666
-$links: #444
+$bg: #9cb3e6
+$bg2: #d4f2ff
+$bg_cont: white
+$txt: #222222
+$main: #999999
+$alt: #666666
+$links: #444444
 
 @font-face
   font-family: Guardian
-  src: url( /fonts/guardian.eot ) /* IE 6,7,8 */  
-  
+  src: url(/fonts/guardian.eot)
+
+
 @font-face
   font-family: Guardian
-  src: url('/fonts/guardian.otf')
-  
+  src: url("/fonts/guardian.otf")
+
+
 body
   background: $bg
   font-family: sans-serif, Helvetica, Arial, Verdana
@@ -163,27 +164,28 @@ body
 
 a
   color: $links
+
 a:hover
-  color: $links + #111
-  
-  
+  color: $links + #111111
+
 input[type='submit'], input.submit, a.button
   +button
-  +color($bg - #555)
+  +color($bg - #555555)
+
 input[type='submit'], input.submit
   display: block
-  
-.row 
+
+.row
   clear: left
 
 .left, .right
   margin: 5px
   float: left
 
-.left 
+.left
   clear: left
   position: relative
-  
+
 .ins, .ins2
   position: absolute
   left: -110px
@@ -191,7 +193,8 @@ input[type='submit'], input.submit
   top: 33px
   width: 100px
   text-align: right
-.ins2  
+
+.ins2
   top: 10px
 
 input
@@ -208,30 +211,30 @@ form#search
   input.submit
     margin-left: 10px
 
-#gradient  
+#gradient
   +gradient($bg2, $bg)
   height: 100%
 
 #container
   width: 85%
-  margin: 0 auto 40px 
+  margin: 0 auto 40px
   padding-top: 30px
-  
-p 
+
+p
   font-size: 0.9em
-  
-h1 
+
+h1
   margin-bottom: 20px
   font-size: 2em
   span
     font-size: 0.55em
     display: block
-    
+
 #spinner
   display: none
-  
+
 #results
-  background: #FFF
+  background: white
   width: 50%
   opacity: 0.9em
   display: block
@@ -241,21 +244,20 @@ h1
   font-size: 1.1em
   .legend
     font-weight: bold
-    margin: 0 0 10px 
-  ul li.res a span, .legend span 
+    margin: 0 0 10px
+  ul li.res a span, .legend span
     width: 130px
     display: inline-block
   ul li.res
     display: block
     margin: 25px 0 35px
     a
-      +gradient($bg + #444, $bg + #5A5A5A)
+      +gradient($bg + #444444, $bg + #5a5a5a)
       +rounded(10px)
       +shadow
       padding: 10px 22px 15px
     a:hover
-      +gradient($bg + #222, $bg + #444)
-  .legend span 
+      +gradient($bg + #222222, $bg + #444444)
+  .legend span
     position: relative
     left: 22px
-      

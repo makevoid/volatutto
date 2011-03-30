@@ -1,6 +1,6 @@
-%h2 Cerca:
+%h2 Cerca un volo:
 
-- object = { from: "MIL", to: "TYO", date: "20/06/2011", date_return: "20/07/2011", days: 3 }
+- object = { from: "MIL", to: "TYO", date: "20/06/2011", return_date: "20/07/2011", days: 1 }
 
 - form object, action: "/", name: "search" do
   .left
@@ -12,9 +12,9 @@
     .ins2 Date
     - tfield "date"
   .right
-    - tfield "date_return"
+    - tfield "return_date"
   .left
-    - select "days", (2..10).to_a, "Giorni +/-", class: "days"
+    - select "days", (1..10).to_a, "Giorni +/-", class: "days"
   .right
     - submit "Cerca"
 

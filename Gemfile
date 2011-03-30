@@ -9,3 +9,6 @@ gem 'rack-flash'
 # gem 'dm-mysql-adapter'
 
 gem 'voidtools'
+
+gem "redis"
+gem "shotgun"

@@ -2,10 +2,15 @@ require 'haml'
 require 'sass'
 require 'json'
 require 'sinatra'
+require 'date'
+require 'redis'
+require 'net/http'
 enable :sessions
 
 path = File.expand_path "../", __FILE__
 APP_PATH = path
+
+require "#{path}/models/volagratis"
 
 class Volavola < Sinatra::Base
   require "#{APP_PATH}/config/env"
@@ -33,18 +38,37 @@ class Volavola < Sinatra::Base
   match "/search.json" do
     content_type :json
     results = []
-    results << {
-      start_date: "15/6/2011",
-      end_date: "15/7/2011",
-      price: "123",
-      link: "#"
-    }
-    results << {
-      start_date: "16/6/2011",
-      end_date: "15/7/2011",
-      price: "124",
-      link: "#"
-    }
+    
+    start = params[:from]
+    dest = params[:to]
+    date = Date.parse params[:date]
+    return_date = Date.parse params[:return_date]
+    days = 1
+    days = params[:days].to_i unless params[:days].blank?
+    
+    raise not_found if start.blank? || dest.blank? || date.nil? || return_date.nil?
+    
+    vg = Volagratis.new(start, dest, date, return_date, days)
+    #vg.redis.wipe
+    vg.search
+    vg.join_threads
+    
+    dates = vg.calc_dates date
+    return_dates = vg.calc_dates return_date
+    
+    dates.each do |date|
+      return_dates.each do |return_date|
+        key = "#{start}:#{dest}:#{date}:#{return_date}"
+        price = vg.redis.get key
+        results << {
+          start_date: date,
+          end_date: return_date,
+          price: price,
+          link: "#asd",
+        }
+      end
+    end
+    
     { results: results }.to_json
   end
 

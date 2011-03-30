@@ -1,3 +1,6 @@
+require 'redis'
+require 'mechanize'
+
 path = File.expand_path "../", __FILE__
 require "#{path}/volagratis.rb"
 
@@ -8,7 +11,7 @@ return_date = Date.new 2011, 7, 17
 days = 1
 
 vg = Volagratis.new(start, dest, date, return_date, days)
-vg.redis.wipe
+#vg.redis.wipe
 vg.search
 p vg.results
 
