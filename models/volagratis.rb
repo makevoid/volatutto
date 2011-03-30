@@ -36,7 +36,8 @@ class Volagratis
     # async
     @redis = REDIS
     @threads = []
-    @key = Digest::MD5.hexdigest Time.now.to_i.to_s
+    @key = "#{@start}:#{@dest}:#{@date}:#{@return_date}"
+    #Digest::MD5.hexdigest Time.now.to_i.to_s
   end
   
   def results
