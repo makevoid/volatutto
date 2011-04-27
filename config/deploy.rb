@@ -105,6 +105,11 @@ end
 
 
 namespace :db do
+  desc "clear"
+  task :clear do
+    run "cd #{current_path}; rake db:clear"
+  end
+  
   desc "Create database"
   task :create do
     run "mysql -u root --password=#{password} -e 'CREATE DATABASE IF NOT EXISTS #{application}_production;'"
