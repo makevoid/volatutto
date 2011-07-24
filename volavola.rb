@@ -7,7 +7,6 @@ require 'redis'
 require 'net/http'
 enable :sessions
 
-`env SL_NAME="ruby_volavola"`
 
 path = File.expand_path "../", __FILE__
 APP_PATH = path
