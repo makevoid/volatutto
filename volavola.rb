@@ -7,6 +7,7 @@ require 'redis'
 require 'net/http'
 enable :sessions
 
+
 path = File.expand_path "../", __FILE__
 APP_PATH = path
 
