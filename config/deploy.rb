@@ -13,8 +13,7 @@ set :scm, "git"
 set :branch, "master"
 set :deploy_via, :remote_cache
 
-set :password, File.read("/Users/makevoid/.password").strip.gsub(/33/, '')
-
+set :password, File.read("/Users/makevoid/.password").strip
 
 set :user,        "www-data"
 
