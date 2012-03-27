@@ -6,8 +6,6 @@ GEM
       nokogiri (>= 1.2.1)
     nokogiri (1.4.4)
     rack (1.2.2)
-    rack-flash (0.1.1)
-      rack
     redis (2.2.0)
     shotgun (0.8)
       rack (>= 1.0)
@@ -25,7 +23,6 @@ PLATFORMS
 DEPENDENCIES
   haml
   mechanize
-  rack-flash
   redis
   shotgun
   sinatra

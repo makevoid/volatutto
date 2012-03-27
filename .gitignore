@@ -3,3 +3,4 @@
 .sqlite
 .pid
 *.rdb
+.sass-cache

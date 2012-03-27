@@ -1,7 +1,7 @@
 
 set :application, "volatutto"
 
-set :domain,      "ovh.makevoid.com"
+set :domain, "kim.makevoid.com" # old: ovh.makevoid.com
 
 # git
 
